@@ -1,0 +1,51 @@
+name: kickio
+description: Kickio - e-Commerce Shoes Sale Applications.
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.5 <4.0.0'
+
+# Dependencies specify other packages that your package needs in order to work.
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+# my app packages
+  provider: ^6.0.5
+  cupertino_icons: ^1.0.2
+  flutter_svg: ^2.0.7
+  flutter_slidable: ^3.0.0
+  intl: ^0.18.1
+
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+    - assets/images/svgs/
+    - assets/logo/
+  # To add custom fonts to your application, add a fonts section here,
+  
+  fonts:
+    - family: Outfit
+      fonts:
+        - asset: assets/fonts/Outfit-Regular.ttf
+  
+        - asset: assets/fonts/Outfit-Medium.ttf
+
+        - asset: assets/fonts/Outfit-Bold.ttf
+          weight: 700
