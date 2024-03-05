@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:kickio/data/models/product.module.dart';
+import 'package:kickio/tools/file_importer.dart';
 
 class AddProductScreen extends StatefulWidget {
   const AddProductScreen({super.key});
@@ -35,13 +34,12 @@ class _AddProductScreenState extends State<AddProductScreen> {
         content: Form(
           key: _imgFormKey,
           child: TextFormField(
-             validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please,enter a image url address!';
-                    }  else if (value.startsWith('https://')) {
-                      return 'Please,enter a correct image url address!';
-                    }
-                  },
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please,enter a image url address!';
+              }
+              return null;
+            },
             decoration: const InputDecoration(
               hintText: 'Image Url https://...',
               border: OutlineInputBorder(),
@@ -79,20 +77,21 @@ class _AddProductScreenState extends State<AddProductScreen> {
     bool isValid = _fromKey.currentState!.validate();
     if (isValid) {
       _fromKey.currentState!.save();
-      print(_productDetails.title);
-      print(_productDetails.price);
-      print(_productDetails.description);
-      print(_productDetails.imgUrl);
+      Provider.of<Products>(context, listen: false)
+          .addProducts(_productDetails);
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => const ManageProductScreen(),
+      ));
     }
   }
 
   void imgUrlSave() {
     bool isimgValid = _imgFormKey.currentState!.validate();
-   if(isimgValid){
-     _imgFormKey.currentState!.save();
-    setState(() {});
-    Navigator.of(context).pop();
-   }
+    if (isimgValid) {
+      _imgFormKey.currentState!.save();
+      setState(() {});
+      Navigator.of(context).pop();
+    }
   }
 
   @override
@@ -149,6 +148,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     } else if (double.parse(value) <= 0) {
                       return 'Please,enter a correct price!';
                     }
+                    return null;
                   },
                   decoration: const InputDecoration(
                     labelText: 'Price',
@@ -175,6 +175,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     } else if (value.length < 20) {
                       return 'Please,enter at least 20 words!';
                     }
+                    return null;
                   },
                   decoration: const InputDecoration(
                     labelText: 'Description',

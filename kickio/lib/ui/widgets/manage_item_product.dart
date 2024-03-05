@@ -15,7 +15,7 @@ class ManageProductItem extends StatelessWidget {
         child: ListTile(
           leading: CircleAvatar(
             radius: 30,
-            child: Image.asset(product.imgUrl),
+            backgroundImage: NetworkImage(product.imgUrl,),
           ),
           title: Text(product.title),
           trailing: Row(

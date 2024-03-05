@@ -9,7 +9,7 @@ class Products with ChangeNotifier {
       imgUrl: 'assets/images/shoe_yellow.png',
       description:
           'Sneaker made from premium leather and suede Waterproof inner liner to keep moisture out...',
-      price:  120.99,
+      price: 120.99,
     ),
     ShoesProduct(
       id: 'p2',
@@ -25,7 +25,7 @@ class Products with ChangeNotifier {
       imgUrl: 'assets/images/shoe_nike.png',
       description:
           'Sneaker made from premium leather and suede Waterproof inner liner to keep moisture out...',
-      price:  330.99,
+      price: 330.99,
     ),
     ShoesProduct(
       id: 'p4',
@@ -41,7 +41,7 @@ class Products with ChangeNotifier {
       imgUrl: 'assets/images/shoe_red.png',
       description:
           'Sneaker made from premium leather and suede Waterproof inner liner to keep moisture out...',
-      price:  128.99,
+      price: 128.99,
     ),
     ShoesProduct(
       id: 'p6',
@@ -51,7 +51,6 @@ class Products with ChangeNotifier {
           'Sneaker made from premium leather and suede Waterproof inner liner to keep moisture out...',
       price: 132.99,
     ),
-    
   ];
 
   List<ShoesProduct> get shoesList {
@@ -60,6 +59,19 @@ class Products with ChangeNotifier {
 
   List<ShoesProduct> get favorites {
     return _shoesList.where((product) => product.isLike).toList();
+  }
+
+  void addProducts(ShoesProduct product) {
+    final newShoesProduct = ShoesProduct(
+      id: product.id,
+      title: product.title,
+      imgUrl: product.imgUrl,
+      description: product.description,
+      price: product.price,
+    );
+
+    _shoesList.add(newShoesProduct);
+    notifyListeners();
   }
 
   ShoesProduct findByNewestId(String shoesId) {
