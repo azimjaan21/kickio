@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:kickio/data/models/product.module.dart';
+import 'package:http/http.dart' as http;
 
 class Products with ChangeNotifier {
   final List<ShoesProduct> _shoesList = [
@@ -61,7 +64,28 @@ class Products with ChangeNotifier {
     return _shoesList.where((product) => product.isLike).toList();
   }
 
+// to Add New Products
   void addProducts(ShoesProduct product) {
+    final url = Uri.parse(
+        "https://kickio-aa3b9-default-rtdb.firebaseio.com/products.json");
+
+    http
+        .post(
+          url,
+          body: jsonEncode(
+            {
+              'title': product.title,
+              'description': product.description,
+              'price': product.price,
+              'imgUrl': product.imgUrl,
+              'isFavorite': product.isLike,
+            },
+          ),
+        )
+        .then(
+          (response) => print(response),
+        );
+
     final newShoesProduct = ShoesProduct(
       id: product.id,
       title: product.title,

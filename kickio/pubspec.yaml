@@ -18,14 +18,16 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.7
   flutter_slidable: ^3.0.0
-  intl: ^0.18.1
+  intl: ^0.19.0
+  http: ^1.1.0
+  
 
   
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 
 # The following section is specific to Flutter packages.
